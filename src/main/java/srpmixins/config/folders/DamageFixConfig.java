@@ -69,4 +69,10 @@ public class DamageFixConfig {
     @Config.RangeInt(min = -1, max = 100)
     @Config.RequiresMcRestart
     public int viralStackSpeedOnTouch = 10;
+
+    @Config.Comment("Prevent spineballs (green projectiles shot by various parasites) from damaging armor if the hit failed, for example due to iframes.")
+    @Config.Name("Fix Spineball Armor Damage")
+    @Config.RequiresMcRestart
+    @MixinConfig.MixinToggle(lateMixin = "mixins.srpmixins.srp.spineballarmorfix.json", defaultValue = true)
+    public boolean fixSpineballArmorDamage = true;
 }
