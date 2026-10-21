@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import srpmixins.handlers.CothNoDropsOnConversion;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPEffectBase.class)
 public abstract class CothCallsOnDeath {
     @Inject(

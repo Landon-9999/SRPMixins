@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Random;
 
 //By fonnymunkey / RLMixins, unmodified
+// fixed in SRP 1.10.x
 @Mixin(WorldGenParasiteBush.class)
 public abstract class ParasiteBushGenerationFix {
 	

@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import srpmixins.config.providers.SRPMobConfigProvider;
 import srpmixins.util.customphasemechanics.SRPSaveDataInterface;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPEventHandlerBus.class)
 public abstract class AssimPlayerFix {
     @Inject(

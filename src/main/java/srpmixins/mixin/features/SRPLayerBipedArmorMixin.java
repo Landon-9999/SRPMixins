@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPLayerBipedArmor.class)
 public abstract class SRPLayerBipedArmorMixin extends LayerArmorBase<ModelBiped> {
 	public SRPLayerBipedArmorMixin(RenderLivingBase<?> rendererIn) {

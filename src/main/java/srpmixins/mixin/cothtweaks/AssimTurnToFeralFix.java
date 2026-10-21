@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 // Fix idea by Monarch = Calamity Catastrophe dev
+// fixed in SRP 1.10.x
 @Mixin(EntityPInfected.class)
 public abstract class AssimTurnToFeralFix extends EntityParasiteBase {
     public AssimTurnToFeralFix(World worldIn) {

@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+// fixed in SRP 1.10.x
 @Mixin(ParasiteEventEntity.class)
 public abstract class MergeHealth {
     @Unique private static boolean srpmixins$isFromMerge = false;

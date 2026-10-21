@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import srpmixins.network.SRPMixinsPacketBiomeChange;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPPacketHandler.class)
 public abstract class RegisterBiomePacket {
     @Shadow(remap = false) public static int nextID() { return 0;}

@@ -6,6 +6,7 @@ import com.dhanantry.scapeandrunparasites.entity.monster.EntityWaveShock;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 
+// fixed in SRP 1.10.x
 @Mixin(value = {
         EntityWaveShock.class,
         EntityWave.class

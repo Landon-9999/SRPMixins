@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+// fixed in SRP 1.10.x
 @Mixin(value = EntityAINexusGrow.class, priority = 900)
 public abstract class BeckonGrowPenalty {
     @Shadow(remap = false) private boolean canGrow;

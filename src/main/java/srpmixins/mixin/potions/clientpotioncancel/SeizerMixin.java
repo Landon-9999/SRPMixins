@@ -7,6 +7,7 @@ import net.minecraft.potion.PotionEffect;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityNak.class)
 public class SeizerMixin {
     @WrapWithCondition(

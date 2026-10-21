@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import srpmixins.config.SRPMixinsConfigHandler;
 import srpmixins.config.SRPMixinsConfigProvider;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPEffectBase.class)
 public abstract class NeedlerFix {
     @Redirect(

@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import srpmixins.handlers.CamouflageHandler;
 
+// fixed in SRP 1.10.x
 @Mixin({EntityPInfected.class, SRPEffectBase.class})
 public abstract class CamouflageOnInfectNearby{
     @ModifyExpressionValue(

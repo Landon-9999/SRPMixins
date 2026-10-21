@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPPotions.class)
 public class PotionAttributeFix {
     @Unique private static final String srpmixins$atkDmgUUID = "2f887c3e-f25c-4f37-bf9e-e4cca1a0d237";

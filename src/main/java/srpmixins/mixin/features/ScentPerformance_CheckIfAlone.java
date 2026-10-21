@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 import java.util.List;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityParasiticScent.class)
 public abstract class ScentPerformance_CheckIfAlone extends Entity {
     public ScentPerformance_CheckIfAlone(World worldIn) {

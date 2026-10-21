@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
+// fixed in SRP 1.10.x
 @Mixin(value = SRPEventHandlerBus.class, priority = 900)
 public abstract class CropGrowStunned {
     @ModifyExpressionValue(

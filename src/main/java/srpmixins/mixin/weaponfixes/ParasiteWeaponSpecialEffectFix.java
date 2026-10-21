@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityParasiteBase.class)
 public abstract class ParasiteWeaponSpecialEffectFix extends EntityMob {
 

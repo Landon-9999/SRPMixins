@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import srpmixins.handlers.TendrilSyncHandler;
 
+// fixed in SRP 1.10.x
 @Mixin(value = {EntityInfDragonE.class, EntityHeblu.class})
 public abstract class SimDragonTendrils extends Entity implements TendrilSyncHandler.ISyncsTendrils {
     public SimDragonTendrils(World worldIn) {

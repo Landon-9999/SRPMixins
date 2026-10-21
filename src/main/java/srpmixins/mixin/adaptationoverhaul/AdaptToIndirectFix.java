@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 //By kotlinprogrammer / RLMixins, modified+fixed
+// fixed in SRP 1.10.x
 @Mixin(EntityPMalleable.class)
 public abstract class AdaptToIndirectFix {
 

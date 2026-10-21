@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPSpawning.DimensionHandler.class)
 public abstract class ColonyLockFix_ParaBiome {
     @Inject(

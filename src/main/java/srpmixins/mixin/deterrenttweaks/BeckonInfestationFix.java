@@ -7,6 +7,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityPStationaryArchitect.class)
 public abstract class BeckonInfestationFix {
     @WrapOperation(

@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPEventHandlerBus.class)
 public abstract class MobSpawningCOTH {
     @Inject(

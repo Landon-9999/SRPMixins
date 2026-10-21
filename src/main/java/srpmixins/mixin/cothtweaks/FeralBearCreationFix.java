@@ -7,6 +7,7 @@ import com.dhanantry.scapeandrunparasites.entity.monster.infected.EntityInfBear;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityInfBear.class)
 public abstract class FeralBearCreationFix extends EntityPInfected {
     public FeralBearCreationFix(World worldIn) {

@@ -9,6 +9,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPSpawning.DimensionHandler.class)
 public abstract class ColonyLockFix {
     @WrapOperation(

@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityPMalleable.class)
 public abstract class AdaptWhileBurningFix extends EntityLivingBase {
     public AdaptWhileBurningFix(World worldIn) {

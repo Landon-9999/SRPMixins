@@ -21,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import srpmixins.network.SRPMixinsPacketBiomeChange;
 
+// fixed in SRP 1.10.x
 @Mixin(ParasiteEventWorld.class)
 public abstract class SendBiomePacket {
     @Unique private static SRPMixinsPacketBiomeChange srpmixins$biomePacket = null;

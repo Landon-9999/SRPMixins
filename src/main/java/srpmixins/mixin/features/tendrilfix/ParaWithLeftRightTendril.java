@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import srpmixins.handlers.TendrilSyncHandler;
 
+// fixed in SRP 1.10.x
 @Mixin(value = {
         EntityBanoAdapted.class,
         EntityCanraAdapted.class,

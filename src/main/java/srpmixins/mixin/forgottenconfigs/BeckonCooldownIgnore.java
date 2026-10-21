@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import srpmixins.util.customphasemechanics.SRPSaveDataInterface;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityAIVenkrolSummon.class)
 public abstract class BeckonCooldownIgnore {
     @Shadow(remap = false) private int attackTimer;

@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityPAdapted.class)
 public abstract class AdaptedPenaltyInstantDespawn extends Entity {
 

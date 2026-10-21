@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 import java.io.PrintStream;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityParasiticScent.class)
 public abstract class DisableScentDebug {
     @WrapWithCondition(

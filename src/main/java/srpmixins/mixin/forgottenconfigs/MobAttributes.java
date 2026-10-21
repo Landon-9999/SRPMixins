@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPAttributes.class)
 public class MobAttributes {
     @Shadow(remap = false) public static double ATA_HEALTH;

@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import srpmixins.config.SRPMixinsConfigHandler;
 import srpmixins.config.providers.DimensionMultiConfigProvider;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityProjectileHomming.class)
 public abstract class OverlordHaunterRangedFix {
     @Shadow(remap = false) private EntityLivingBase owner;

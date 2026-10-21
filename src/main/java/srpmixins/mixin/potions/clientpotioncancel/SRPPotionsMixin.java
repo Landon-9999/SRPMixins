@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.io.PrintStream;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPPotions.class)
 public class SRPPotionsMixin {
     @Inject(

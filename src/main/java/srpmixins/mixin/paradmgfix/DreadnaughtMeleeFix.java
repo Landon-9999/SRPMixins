@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import srpmixins.config.SRPMixinsConfigHandler;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityOronco.class)
 public abstract class DreadnaughtMeleeFix extends EntityMob {
     public DreadnaughtMeleeFix(World worldIn) {

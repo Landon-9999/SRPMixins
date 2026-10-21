@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import srpmixins.config.SRPMixinsConfigHandler;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityInfPlayer.class)
 public abstract class AssimPlayerFix_Threshold {
     @ModifyReturnValue(

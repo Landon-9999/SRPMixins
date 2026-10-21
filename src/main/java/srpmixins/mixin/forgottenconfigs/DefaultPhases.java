@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import srpmixins.config.SRPConfigProvider;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPSaveData.class)
 public abstract class DefaultPhases {
     @WrapOperation(

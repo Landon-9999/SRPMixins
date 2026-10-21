@@ -18,6 +18,7 @@ import srpmixins.config.SRPMixinsConfigHandler;
 
 import java.io.PrintStream;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPSaveData.class)
 public abstract class SRPSaveDataMixin {
     @Shadow(remap = false) private static SRPSaveData instance;

@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 import srpmixins.config.SRPConfigProvider;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPSaveData.class)
 public abstract class PointReductionPhaseLimit {
     @Shadow(remap = false) public abstract byte getEvolutionPhase(int id);

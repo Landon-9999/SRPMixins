@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 //By nischhelm / RLMixins, modified
+// fixed in SRP 1.10.x
 @Mixin(SRPItems.class)
 public abstract class StrangeBoneStacking {
 

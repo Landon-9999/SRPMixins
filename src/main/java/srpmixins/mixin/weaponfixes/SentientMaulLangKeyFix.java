@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 
+// fixed in SRP 1.10.x
 @Mixin(WeaponMeleeMaul.class)
 public abstract class SentientMaulLangKeyFix extends WeaponToolMeleeBase {
     public SentientMaulLangKeyFix(ToolMaterial material, String name, double attackspeed, float range, float attackD, boolean fear, byte id) {

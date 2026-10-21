@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+// fixed in SRP 1.10.x
 @Mixin(ParasiteEventEntity.class)
 public abstract class MovingSoundFix {
     @Unique private static boolean srpmixins$alreadySentMovingSound = false;

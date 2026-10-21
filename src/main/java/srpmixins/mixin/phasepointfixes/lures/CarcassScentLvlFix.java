@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import srpmixins.config.SRPConfigProvider;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityParasiticScent.class)
 public abstract class CarcassScentLvlFix {
     @Shadow(remap = false) public abstract void increaseDanger(int in, boolean plus);

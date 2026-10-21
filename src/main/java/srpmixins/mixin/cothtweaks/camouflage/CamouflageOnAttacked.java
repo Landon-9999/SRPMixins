@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import srpmixins.handlers.CamouflageHandler;
 
+// fixed in SRP 1.10.x
 @Mixin({EntityPAdapted.class, EntityPAncient.class, EntityPFeral.class, EntityPHijacked.class, EntityPInfected.class, EntityPPreeminent.class, EntityPPrimitive.class, EntityPPure.class, EntityHost.class, EntityHostII.class, EntityMes.class, EntityNuuh.class})
 public abstract class CamouflageOnAttacked {
     @ModifyExpressionValue(

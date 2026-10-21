@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import srpmixins.config.SRPMixinsConfigHandler;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPWorldData.class)
 public abstract class SRPWorldDataMixin extends WorldSavedData {
     public SRPWorldDataMixin(String name) {

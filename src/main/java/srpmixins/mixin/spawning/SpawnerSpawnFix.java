@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 //By nischhelm / RLMixins, modified
+// fixed in SRP 1.10.x
 @Mixin(SRPSpawning.DimensionHandler.class)
 public abstract class SpawnerSpawnFix {
 

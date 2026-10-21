@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import srpmixins.config.SRPMixinsConfigHandler;
 
+// fixed in SRP 1.10.x
 @Mixin(EntityElvia.class)
 public abstract class WraithMeleeFix extends EntityMob {
     public WraithMeleeFix(World worldIn) {

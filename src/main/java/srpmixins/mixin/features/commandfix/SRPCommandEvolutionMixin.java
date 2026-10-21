@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 import java.util.List;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPCommandEvolution.class)
 public abstract class SRPCommandEvolutionMixin implements ICommand {
     /**

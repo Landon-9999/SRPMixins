@@ -19,6 +19,7 @@ import srpmixins.config.providers.SRPMobConfigProvider;
 
 import java.util.ArrayList;
 
+// fixed in SRP 1.10.x
 @Mixin(SRPSaveData.class)
 public abstract class FixParaUnlocking extends WorldSavedData {
     public FixParaUnlocking(String name) {
