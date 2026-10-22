@@ -28,7 +28,7 @@ public class ParaBiomeConfig {
     @MixinConfig.MixinToggle(lateMixin = "mixins.srpmixins.srp.fogmultiplayerfix.json", defaultValue = true)
     public boolean fixBiomeFog = true;
 
-    @Config.Comment("Smooths client fog color and density updates and prevents unrelated world loads from clearing rendered fog. Uses a linear fog range instead of SRP's exponential curve. Disable and restart to restore original client fog rendering; the multiplayer fog fix is independent.")
+    @Config.Comment("Smooths client fog color and density updates and prevents unrelated world loads from clearing rendered fog.") //by landon and claude i don't understand shit about this but it works well enough now
     @Config.Name("Smooth Parasitic Biome Fog")
     @Config.RequiresMcRestart
     @MixinConfig.MixinToggle(lateMixin = "mixins.srpmixins.srp.smoothfog.json", defaultValue = true)
