@@ -27,21 +27,32 @@ public class RemoveAdaptationRecipe extends IForgeRegistryEntry.Impl<IRecipe> im
         for(int i : new int[]{0,2,6,8}) {
             ItemStack stack = inv.getStackInSlot(i);
             if(stack.isEmpty() && SRPMixinsConfigHandler.adaptation.adaptationResetItemTwo.isEmpty()) continue;
-            else if(stack.isEmpty()) return false;
-            ResourceLocation loc = stack.getItem().getRegistryName();
-            if(loc == null) return false;
-            if(!loc.toString().equals(SRPMixinsConfigHandler.adaptation.adaptationResetItemTwo)) return false;
+            if(!matchesConfigItem(stack, SRPMixinsConfigHandler.adaptation.adaptationResetItemTwo)) return false;
         }
         for(int i : new int[]{1,3,5,7}) {
             ItemStack stack = inv.getStackInSlot(i);
-            if(stack.isEmpty()) return false;
-            ResourceLocation loc = stack.getItem().getRegistryName();
-            if(loc == null) return false;
-            if(!loc.toString().equals(SRPMixinsConfigHandler.adaptation.adaptationResetItem)) return false;
+            if(!matchesConfigItem(stack, SRPMixinsConfigHandler.adaptation.adaptationResetItem)) return false;
         }
 
         outputStack = inv.getStackInSlot(4).copy();
         return true;
+    }
+
+    private static boolean matchesConfigItem(ItemStack stack, String configItem) {
+        if(stack.isEmpty()) return false;
+        ResourceLocation loc = stack.getItem().getRegistryName();
+        if(loc == null) return false;
+        String[] split = configItem.split(":");
+        int meta = 0;
+        if(split.length > 2) {
+            try {
+                meta = Integer.parseInt(split[2]);
+            } catch(NumberFormatException e) {
+                return false;
+            }
+        }
+        if(split.length < 2 || !loc.toString().equals(split[0] + ":" + split[1])) return false;
+        return stack.getMetadata() == meta;
     }
 
     @Override
