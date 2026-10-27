@@ -1,22 +1,18 @@
 package srpmixins.mixin.vanilla;
 
-import com.dhanantry.scapeandrunparasites.item.tool.WeaponToolArmorBase;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import srpmixins.capability.adaptation.CapabilityAdaptationHandler;
-import srpmixins.capability.adaptation.ICapabilityAdaptation;
 
 @Mixin(Item.class)
 public abstract class SyncAdaptation {
 	/**
-	 * Writes and attaches the adaptation capability to an ItemStack's normal nbt tag to allow for syncing
+	 * Attaches the adaptation capability to a copy of the share tag to sync it to the client
 	 */
 	@ModifyReturnValue(
 			method = "getNBTShareTag",
@@ -24,35 +20,19 @@ public abstract class SyncAdaptation {
 			remap = false
 	)
 	private NBTTagCompound srpmixins_sendAdaptation(NBTTagCompound original, ItemStack stack) {
-		if(original != null && stack.getMaxStackSize() == 1 && stack.getItem() instanceof WeaponToolArmorBase) {
-			ICapabilityAdaptation cap = stack.getCapability(CapabilityAdaptationHandler.CAP_ADAPTATION, null);
-			if(cap != null) {
-				NBTBase capNBT = CapabilityAdaptationHandler.CAP_ADAPTATION.writeNBT(cap, null);
-				if(capNBT != null) original.setTag("AdaptationCap", capNBT);
-			}
-		}
-		return original;
+		return CapabilityAdaptationHandler.writeSyncTag(stack, original);
 	}
-	
+
 	/**
-	 * Reads the adaptation capability from an ItemStack's normal nbt tag to allow for syncing
+	 * Reads the adaptation capability from the share tag and strips it before it gets set as the stack's tag
 	 */
-	@Inject(
+	@ModifyVariable(
 			method = "readNBTShareTag",
 			at = @At("HEAD"),
+			argsOnly = true,
 			remap = false
 	)
-	private void srpmixins_readAdaptation(ItemStack stack, NBTTagCompound nbt, CallbackInfo ci) {
-		if(nbt != null && stack.getMaxStackSize() == 1 && stack.getItem() instanceof WeaponToolArmorBase) {
-			NBTBase capNBT = nbt.getTag("AdaptationCap");
-			if(capNBT instanceof NBTTagCompound) {
-				ICapabilityAdaptation cap = stack.getCapability(CapabilityAdaptationHandler.CAP_ADAPTATION, null);
-				if(cap != null) {
-					CapabilityAdaptationHandler.CAP_ADAPTATION.readNBT(cap, null, capNBT);
-					//Tag is only needed for sync, remove it to avoid bloating the non-capability tag
-					nbt.removeTag("AdaptationCap");
-				}
-			}
-		}
+	private NBTTagCompound srpmixins_readAdaptation(NBTTagCompound nbt, ItemStack stack) {
+		return CapabilityAdaptationHandler.readSyncTag(stack, nbt);
 	}
 }
