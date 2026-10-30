@@ -5,6 +5,15 @@ import net.minecraft.client.Minecraft;
 import java.lang.ref.WeakReference;
 
 public class SRPFog {
+    public static boolean terrainFogEnabled() {
+        return Settings.options.enabled(Minecraft.getMinecraft().gameSettings);
+    }
+
+    private static final class Settings {
+        private static final FogSettings options = new FogSettings(
+                Minecraft.getMinecraft().gameSettings.getClass(), FogSettings.celeritasQuality());
+    }
+
     /**
      * Client-side holder of the current SRP fog density (smoothed via {@link Transition}), reset per server connection instead of per world load.
      */
