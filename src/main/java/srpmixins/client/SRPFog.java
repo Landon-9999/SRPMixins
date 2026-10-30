@@ -96,6 +96,10 @@ public class SRPFog {
      * and converts density into a fog color blend weight.
      */
     public static final class Transition {
+        private static final double SMOOTHING_TIME_SECONDS = 0.15;
+        private static final float ZERO_DENSITY_THRESHOLD = 1.0e-7F;
+        private static final float FULL_COLOR_DENSITY_FRACTION = 0.2F;
+
         private float value;
         private float target;
         private long sampledAt;
@@ -109,8 +113,8 @@ public class SRPFog {
         public float sample(long now) {
             if (initialized) {
                 double elapsed = Math.max(0.0, (now - sampledAt) * 1.0e-9);
-                value += (target - value) * (float) -Math.expm1(-elapsed / 0.15);
-                if (target == 0.0F && value < 1.0e-7F) value = 0.0F;
+                value += (target - value) * (float) -Math.expm1(-elapsed / SMOOTHING_TIME_SECONDS);
+                if (target == 0.0F && value < ZERO_DENSITY_THRESHOLD) value = 0.0F;
             }
             sampledAt = now;
             initialized = true;
@@ -119,7 +123,7 @@ public class SRPFog {
 
         public static float colorWeight(float density, float maximum) {
             if (!Float.isFinite(maximum) || maximum <= 0.0F) return 0.0F;
-            float weight = Math.max(0.0F, Math.min(1.0F, density / maximum / 0.2F));
+            float weight = Math.max(0.0F, Math.min(1.0F, density / maximum / FULL_COLOR_DENSITY_FRACTION));
             return weight * weight * (3.0F - 2.0F * weight);
         }
     }
