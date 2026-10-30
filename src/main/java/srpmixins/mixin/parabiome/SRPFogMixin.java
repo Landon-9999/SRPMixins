@@ -4,7 +4,6 @@ import com.dhanantry.scapeandrunparasites.util.config.SRPConfigWorld;
 import com.dhanantry.scapeandrunparasites.util.handlers.SRPEventHandlerBus;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
@@ -32,9 +31,6 @@ public abstract class SRPFogMixin {
         //don't run original
     }
 
-    //Same exponential fog as SRP, but with the smoothed client density instead of SRPs field that jumps with every packet and gets reset on world load
-    //Not applied if another mod already canceled the event (= took over the fog), in liquids or when blind
-    //While SRP fog is active, density is at least 3/render distance (95% opaque at render distance), otherwise low densities show the chunk borders
     @WrapMethod(method = "onEvent(Lnet/minecraftforge/client/event/EntityViewRenderEvent$FogDensity;)V", remap = false)
     private void srpmixins$applySmoothDensity(EntityViewRenderEvent.FogDensity event, Operation<Void> original) {
         if (!SRPMixinsConfigHandler.parabiome.smoothBiomeFog) {
@@ -44,11 +40,9 @@ public abstract class SRPFogMixin {
         float density = SRPFog.State.density();
         if (density > 0.0F && !event.isCanceled() && srpmixins$canApplyFog(event)) {
             GlStateManager.setFog(GlStateManager.FogMode.EXP);
-            float minDensity = 3.0F / (Minecraft.getMinecraft().gameSettings.renderDistanceChunks * 16.0F);
-            event.setDensity(Math.max(density, minDensity));
+            event.setDensity(density);
             event.setCanceled(true);
         }
-        //don't run original
     }
 
     @Unique
