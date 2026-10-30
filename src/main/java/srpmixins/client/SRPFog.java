@@ -1,8 +1,17 @@
 package srpmixins.client;
 
+import net.minecraft.block.state.IBlockState;
+import com.dhanantry.scapeandrunparasites.util.config.SRPConfigWorld;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.MobEffects;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import org.lwjgl.opengl.GL11;
 
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
 
 public class SRPFog {
     public static boolean terrainFogEnabled() {
@@ -12,6 +21,45 @@ public class SRPFog {
     private static final class Settings {
         private static final FogSettings options = new FogSettings(
                 Minecraft.getMinecraft().gameSettings.getClass(), FogSettings.celeritasQuality());
+    }
+
+    public static boolean canApplyFog(Entity entity, IBlockState state) {
+        return !state.getMaterial().isLiquid()
+                && !(entity instanceof EntityLivingBase && ((EntityLivingBase) entity).isPotionActive(MobEffects.BLINDNESS));
+    }
+
+    public static void applyAmbientFog(float density) {
+        Ambient.apply(density);
+    }
+
+    private static final class Ambient {
+        private static final Object state = state();
+        private static final Field mode = ReflectionHelper.findField(state.getClass(), "mode", "field_179047_b");
+        private static final Field start = ReflectionHelper.findField(state.getClass(), "start", "field_179045_d");
+        private static final Field end = ReflectionHelper.findField(state.getClass(), "end", "field_179046_e");
+        private static final FogRange range = new FogRange();
+
+        private static Object state() {
+            try {
+                return ReflectionHelper.findField(GlStateManager.class, "fogState", "field_179155_g").get(null);
+            } catch (IllegalAccessException exception) {
+                throw new IllegalStateException("Cannot access ambient fog state", exception);
+            }
+        }
+
+        private static void apply(float density) {
+            try {
+                if (mode.getInt(state) != GL11.GL_LINEAR) return;
+                float ambientStart = start.getFloat(state);
+                float ambientEnd = end.getFloat(state);
+                if (!Float.isFinite(ambientStart) || !Float.isFinite(ambientEnd) || ambientEnd <= 0.0F || ambientStart >= ambientEnd) return;
+                range.compose(ambientStart, ambientEnd, density, SRPConfigWorld.biomeFogDensity);
+                GlStateManager.setFogStart(range.getStart());
+                GlStateManager.setFogEnd(range.getEnd());
+            } catch (IllegalAccessException exception) {
+                throw new IllegalStateException("Cannot read ambient fog range", exception);
+            }
+        }
     }
 
     /**
