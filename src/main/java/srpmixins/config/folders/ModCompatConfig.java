@@ -75,6 +75,19 @@ public class ModCompatConfig {
     @Config.RequiresMcRestart
     public boolean overlastGLFix = true;
 
+    @Config.Comment("Shows changes of the evolution points as rising and fading numbers (+1, +5, -100) above the phase number of the OverLast evolution bar.\n" +
+            "Needs to be enabled on the server as well.")
+    @Config.Name("OverLast HUD Point Changes")
+    @MixinConfig.MixinToggle(lateMixin = "mixins.srpmixins.overlast.pointchanges.json", defaultValue = true)
+    @MixinConfig.CompatHandling(
+            modid = "overlast",
+            desired = true,
+            reason = "Mod Compat for OverLast, requires OverLast",
+            warnIngame = false
+    )
+    @Config.RequiresMcRestart
+    public boolean overlastHUDPointChanges = true;
+
     @Config.Comment("Set to true to make \"Scape and Spartan: Parasites\" weapons with the Uncapped property ignore parasite damage caps.\n" +
             "NOTE: This property works without SRPMixins as well, this just streamlines the handling a bit. \n" +
             "I kinda thought it didn't work - without actually testing it...")

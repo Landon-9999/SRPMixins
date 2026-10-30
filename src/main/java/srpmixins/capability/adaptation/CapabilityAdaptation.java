@@ -136,7 +136,10 @@ public class CapabilityAdaptation implements ICapabilityAdaptation {
 
     @Override
     public void copyAdaptationsFrom(ICapabilityAdaptation adaCap) {
-        for(int i=0; i<adaCap.getTrackCount(); i++)
-            this.trackedTypes.put(adaCap.getNames().get(i), adaCap.getCounts().get(i));
+        List<String> names = adaCap.getNames();
+        List<Integer> counts = adaCap.getCounts();
+        for(int i=0; i<names.size(); i++)
+            this.trackedTypes.put(names.get(i), counts.get(i));
+        invalidateCache();
     }
 }

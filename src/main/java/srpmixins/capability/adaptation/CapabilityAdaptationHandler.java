@@ -41,6 +41,40 @@ public class CapabilityAdaptationHandler {
         CapabilityManager.INSTANCE.register(ICapabilityAdaptation.class, new Storage(), CapabilityAdaptation::new);
     }
 
+    private static final String SYNC_KEY = "AdaptationCap";
+
+    /**
+     * Returns a copy of the given tag with the adaptation capability attached, or the tag itself if the stack has none
+     */
+    @Nullable
+    public static NBTTagCompound writeSyncTag(ItemStack stack, @Nullable NBTTagCompound tag) {
+        if(!(stack.getItem() instanceof WeaponToolArmorBase) || stack.getMaxStackSize() != 1) return tag;
+        ICapabilityAdaptation cap = stack.getCapability(CAP_ADAPTATION, null);
+        if(cap == null) return tag;
+        NBTBase capNBT = CAP_ADAPTATION.writeNBT(cap, null);
+        if(capNBT == null) return tag;
+
+        NBTTagCompound syncTag = tag == null ? new NBTTagCompound() : tag.copy();
+        syncTag.setTag(SYNC_KEY, capNBT);
+        return syncTag;
+    }
+
+    /**
+     * Reads the adaptation capability from the given tag and strips it, returns null if nothing else is left in the tag
+     */
+    @Nullable
+    public static NBTTagCompound readSyncTag(ItemStack stack, @Nullable NBTTagCompound tag) {
+        if(tag == null || !(stack.getItem() instanceof WeaponToolArmorBase) || stack.getMaxStackSize() != 1) return tag;
+        NBTBase capNBT = tag.getTag(SYNC_KEY);
+        if(!(capNBT instanceof NBTTagCompound)) return tag;
+        ICapabilityAdaptation cap = stack.getCapability(CAP_ADAPTATION, null);
+        if(cap == null) return tag;
+
+        CAP_ADAPTATION.readNBT(cap, null, capNBT);
+        tag.removeTag(SYNC_KEY);
+        return tag.isEmpty() ? null : tag;
+    }
+
     public static class EventHandler {
         @SubscribeEvent
         public static void onAttachCapabilities(AttachCapabilitiesEvent<ItemStack> event) {

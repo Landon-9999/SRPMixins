@@ -6,7 +6,8 @@
   "target": "@env(DEFAULT)",
   "minVersion": "0.8",
   "mixins": [
-    "SyncAdaptation"
+    "SyncAdaptation",
+    "SyncAdaptationToServer"
   ],
   "injectors": {
     "maxShiftBy": 10

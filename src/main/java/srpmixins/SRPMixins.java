@@ -30,12 +30,14 @@ import srpmixins.compat.CompatUtil;
 import srpmixins.compat.LycanitesMobsCompat;
 import srpmixins.compat.crafttweaker.CT_BlockInfestationEvent;
 import srpmixins.compat.hordes.HordesCompat;
+import srpmixins.compat.overlast.PointChangeHandler;
 import srpmixins.config.SRPConfigProvider;
 import srpmixins.config.SRPMixinsConfigHandler;
 import srpmixins.config.SRPMixinsConfigProvider;
 import srpmixins.config.providers.*;
 import srpmixins.handlers.*;
 import srpmixins.loot.SRPPhaseLootCondition;
+import srpmixins.network.PacketHandler;
 import srpmixins.rules.ConversionPathways;
 import srpmixins.rules.ruleset.*;
 import srpmixins.world.SRPWorldProvider;
@@ -64,6 +66,8 @@ public class SRPMixins {
     public void preInit(FMLPreInitializationEvent event) {
         CONFIG = new Configuration(event.getSuggestedConfigurationFile());
         CONFIG.load();
+
+        PacketHandler.init();
 
         SRPMobConfigProvider.registerMobs();
 
@@ -100,6 +104,7 @@ public class SRPMixins {
         registerEventSubscriberIf(TendrilSyncHandler.class, SRPMixinsConfigHandler.various.fixTendrilRegain);
         registerEventSubscriberIf(TickSRPDataHandler.class, SRPMixinsConfigHandler.playerphases.enabled && SRPMixinsConfigHandler.playerphases.individualTicks);
         registerEventSubscriberIf(FogDensityHandler.class, SRPMixinsConfigHandler.parabiome.fixBiomeFog);
+        if(Loader.isModLoaded("overlast") && SRPMixinsConfigHandler.modcompat.overlastHUDPointChanges) PointChangeHandler.init();
         registerEventSubscriberIf(CT_BlockInfestationEvent.CT_EventForwarder.class, Loader.isModLoaded("crafttweaker"));
 
         LootConditionManager.registerCondition(new SRPPhaseLootCondition.Serializer());
